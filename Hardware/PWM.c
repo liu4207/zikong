@@ -63,3 +63,31 @@ void TIM2_IRQHandler(void)
         TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
     }
 }
+void PA9_Init(void)
+{
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);  // 使能 GPIOA 时钟
+
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;               // 选择 PA9 引脚
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;         // 推挽输出
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;        // 设置输出速度
+    GPIO_Init(GPIOA, &GPIO_InitStructure);                    // 初始化 PA9 引脚
+
+    GPIO_SetBits(GPIOA, GPIO_Pin_9);                          // 输出高电平 (VCC)
+}
+void B15_Init(void)
+{
+    // 使能 GPIOB 时钟
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+
+    GPIO_InitTypeDef GPIO_InitStructure;
+    
+    // 配置 B15 引脚为推挽输出模式
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;              // 选择 B15 引脚
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;         // 推挽输出模式
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;        // 设置输出速度
+    GPIO_Init(GPIOB, &GPIO_InitStructure);                    // 初始化 GPIOB 的 B15 引脚
+
+    // 设置 B15 引脚为低电平，表示接地
+    GPIO_ResetBits(GPIOB, GPIO_Pin_15);
+}
