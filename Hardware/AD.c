@@ -1,5 +1,8 @@
 //AD初始化
 #include "stm32f10x.h"                  // Device header
+#include "AD.h"
+#include "Delay.h"
+#define LDR_READ_TIMES	10  //光照传感器ADC循环读取次数
 
 void AD_Init(void)
 {
@@ -73,3 +76,34 @@ uint16_t AD_GetValue2(void)
     while (ADC_GetFlagStatus(ADC2, ADC_FLAG_EOC) == RESET);  // 等待转换完成
     return ADC_GetConversionValue(ADC2);  // 获取 ADC2 的转换值
 }
+
+// 计算 LDR 数据的平均值（如果需要的话）
+uint16_t LDR_Average_Data(void)
+{
+    uint32_t tempData = 0;
+    for (uint8_t i = 0; i < LDR_READ_TIMES; i++)
+    {
+        tempData += AD_GetValue2();  // 读取 ADC2值（LDR 值）
+        Delay_ms(5);
+    }
+    tempData /= LDR_READ_TIMES;
+    return (uint16_t)tempData;
+}
+//uint16_t LDR_LuxData()
+//{
+//	float voltage = 0;	
+//	float R = 0;	
+//	uint16_t Lux = 0;
+//	voltage = AD_GetValue2();
+//	voltage  = voltage / 4096 * 3.3f;
+//	
+//	R = voltage / (3.3f - voltage) * 10000;
+//		
+//	Lux = 40000 * pow(R, -0.6021);
+//	
+//	if (Lux > 999)
+//	{
+//		Lux = 999;
+//	}
+//	return Lux;
+//}

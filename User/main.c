@@ -99,11 +99,11 @@ void update_voltage_reference(void)
 void control_light(void)
 {
     // 读取光传感器的模拟值（假设通过 ADC1 和 ADC2 获取）
-    light_value = (float)AD_GetValue2() * 3.3 / 4096;  
+    light_value = (float)LDR_Average_Data() * 3.3f / 4096;  
     
     // 将光传感器的值反向映射到 PWM 占空比
     // 假设光传感器越暗输出值越小，控制目标是：光越暗，灯越亮
-    duty_cycle = (MAX_LIGHT_SENSOR_VALUE - light_value) / MAX_LIGHT_SENSOR_VALUE * PWM_PERIOD;
+    duty_cycle = 500+( light_value) / 2*MAX_LIGHT_SENSOR_VALUE * PWM_PERIOD;
     
     // 将占空比限制在合理范围
     if (duty_cycle > PWM_PERIOD)
