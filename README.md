@@ -73,7 +73,7 @@
 ## 📸 效果展示
 
 <video width="600" controls>
-  <source src="https://github.com/liu4207/zikong/blob/main/assets/zikong.mp4" type="video/mp4">
+  <source src="https://github.com/liu4207/zikong/blob/main/zikong.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
