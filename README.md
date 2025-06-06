@@ -1,7 +1,7 @@
 # 自动控制原理项目 🚗
-（参考主页的另一个自动控制原理项目代码）
-本项目是基于嵌入式系统的智能设备设计，采用高效的控制算法和硬件架构，集成了先进的电源管理、通信协议和传感器控制，支持精确的自动化控制与数据处理。设计包括基于 STM32 的嵌入式硬件和软件平台，适用于智能家居、机器人和自动化控制等应用。
 
+本项目是基于嵌入式系统的智能设备设计，采用高效的控制算法和硬件架构，集成了先进的电源管理、通信协议和传感器控制，支持精确的自动化控制与数据处理。设计包括基于 STM32 的嵌入式硬件和软件平台，适用于智能家居、机器人和自动化控制等应用。
+（参考主页的另一个自动控制原理项目代码,main是最初版本代码，master分支是成熟的代码）
 ---
 
 ## 🧩 项目特点
@@ -73,7 +73,7 @@
 ## 📸 效果展示
 
 <video width="600" controls>
-  <source src="https://github.com/liu4207/zikong/blob/master/assets/zikong.mp4" type="video/mp4">
+  <source src="https://github.com/liu4207/zikong/blob/main/assets/zikong.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
